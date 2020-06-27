@@ -1,0 +1,38 @@
+{% extends 'index.twig' %}
+{% block content %}
+    <!-- Default form register -->
+    <form class="text-center border border-light p-5" action="/users/register" method="post">
+
+        <p class="h4 mb-4">Register</p>
+
+        <!-- user name -->
+        <input type="email" id="defaultRegisterFormUserName" class="form-control mb-4" placeholder="User Name" name="username" required>
+
+        <!-- Email -->
+        <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail" name="email" required>
+
+        <!-- Password -->
+        <input type="password" id="defaultRegisterFormPassword" class="form-control mb-4" placeholder="Password" name="password" required>
+
+        <!-- confirm Password -->
+        <input type="password" id="defaultLoginFormConfirmPassword" class="form-control mb-4" placeholder="Confirm Password" name="confirm-password" required>
+
+{#        <div class="d-flex justify-content-around">#}
+{#            <div>#}
+{#                <!-- Remember me -->#}
+{#                <div class="custom-control custom-checkbox">#}
+{#                    <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">#}
+{#                    <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+
+        <!-- Register button -->
+        <button class="btn btn-info btn-block my-4" type="submit">Register</button>
+
+        <!-- Login -->
+        <p>Already have an account?
+            <a href="/users/login">Login</a>
+        </p>
+    </form>
+{% endblock %}
