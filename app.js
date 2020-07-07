@@ -5,6 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var favicon = require('serve-favicon')
 var bodyParser = require('body-parser')
+var session = require('express-session')
+var MongoDBStore = require('connect-mongodb-session')(session)
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -18,11 +20,23 @@ app.set('view engine', 'twig');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(session({
+  resave: false,
+  saveUninitialized: true,
+  secret: 'djfhgvhlemkw847t4982j188ezu34^?F$^T%?2Dxceji',
+  cookie: {
+    maxAge: 60 * 60 * 1000
+  },
+  store: new MongoDBStore({
+    uri: 'mongodb+srv://login-app:MumXS3uduIWj61m9@cluster0.uph79.mongodb.net/loginapp',
+    collection: 'sessions'
+  })
+}))
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
+// rotte statiche
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
